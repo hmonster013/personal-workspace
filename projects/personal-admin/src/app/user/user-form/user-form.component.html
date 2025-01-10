@@ -1,0 +1,37 @@
+<div class="container">
+  <form 
+    (ngSubmit)="onSubmit()" 
+    class="form-container" 
+    [formGroup]="form">
+    <h1 *ngIf="!currentSkill; else elseH1">Add Skill</h1>
+    <ng-template #elseH1>
+      <h1>Edit Skill</h1>
+    </ng-template>
+    <section *ngIf="currentSkill">
+      <label for="id">Id:</label>
+      <input
+        id="id" 
+        name="id" 
+        formControlName="id"
+        placeholder="Id: number" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="name">Name:</label>
+      <input 
+        id="name" 
+        name="name" 
+        formControlName="name"
+        placeholder="Name" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section class="form-container__iconInput">
+      <label for="icon">Icon:</label>
+      <textarea name="icon" id="icon" formControlName="icon"></textarea>
+    </section>
+
+    <button type="submit" class="form-container__submitBt">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,93 @@
+<div class="container">
+  <form 
+    (ngSubmit)="onSubmit()" 
+    class="form-container" 
+    [formGroup]="form">
+    <h1 *ngIf="!currentExperience; else elseH1">Add Experience</h1>
+    <ng-template #elseH1>
+      <h1>Edit Experience</h1>
+    </ng-template>
+    <section *ngIf="currentExperience">
+      <label for="id">Id:</label>
+      <input
+        id="id" 
+        name="id" 
+        formControlName="id"
+        placeholder="Id: number" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="companyName">Company Name:</label>
+      <input 
+        id="companyName" 
+        name="companyName" 
+        formControlName="companyName"
+        placeholder="Company Name" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="companyImg">Company Img:</label>
+      <input 
+        id="companyImg" 
+        name="companyImg" 
+        formControlName="companyImg"
+        placeholder="Company Img" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="jobTitle">Job Title:</label>
+      <input 
+        id="jobTitle" 
+        name="jobTitle" 
+        formControlName="jobTitle"
+        placeholder="Job Title" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="description">Description:</label>
+      <input 
+        id="description" 
+        name="description" 
+        formControlName="description"
+        placeholder="Description" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="workingPeriod">Working Period:</label>
+      <input 
+        id="workingPeriod" 
+        name="workingPeriod" 
+        formControlName="workingPeriod"
+        placeholder="Working Period" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="startDate">Start Date:</label>
+      <input 
+        id="startDate" 
+        name="startDate" 
+        formControlName="startDate"
+        placeholder="Start Date" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="endDate">End Date:</label>
+      <input 
+        id="endDate" 
+        name="endDate" 
+        formControlName="endDate"
+        placeholder="End Date" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+
+    <button type="submit" class="form-container__submitBt">Submit</button>
+  </form>
+</div>

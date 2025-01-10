@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="breadcrumb-container">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <h1>Links</h1>
+  <div class="filter-container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <input formControlName="name" type="text" placeholder="Link name" class="filter-container__nameInput">
+      <button type="submit">Search</button>
+      <button type="button" (click)="create()" class="filter-container__createButton">Create</button>
+    </form>
+  </div>
+  <hr>
+  <div class="container__table">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Url</th>
+          <th>Icon</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let link of listLinks">
+          <td>{{link.id}}</td>
+          <td>{{link.name}}</td>
+          <td>{{link.title}}</td>
+          <td>{{link.url}}</td>
+          <td>{{link.icon}}</td>
+          <td>
+            <div class="container__table--action" (click)="openPopup(link.id)">
+              <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                </svg>
+              </i>
+              <div class="container__table__popup" 
+                   [ngClass]="{'container__table__popup--active': activePopup === link.id}">
+                <button>View</button>
+                <button (click)="edit(link)">Update</button>
+                <hr>
+                <button (click)="remove(link.id)">Remove</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container__paging">
+      <button (click)="goToPage(page - 1)" [disabled]="page === 1"><</button>
+      <ng-container *ngFor="let tPage of listPage">
+        <button (click)="goToPage(tPage)" [ngClass]="{'active': page == tPage}">{{tPage}}</button>
+      </ng-container>
+      <button (click)="goToPage(page + 1)" [disabled]="page === totalPages">></button>
+    </div>
+  </div>
+</div>

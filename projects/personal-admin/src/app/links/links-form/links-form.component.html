@@ -1,0 +1,63 @@
+<div class="container">
+  <form 
+    (ngSubmit)="onSubmit()" 
+    class="form-container" 
+    [formGroup]="form">
+    <h1 *ngIf="!currentLink; else elseH1">Add Link</h1>
+    <ng-template #elseH1>
+      <h1>Edit Link</h1>
+    </ng-template>
+    <section *ngIf="currentLink">
+      <label for="id">Id:</label>
+      <input
+        id="id" 
+        name="id" 
+        formControlName="id"
+        placeholder="Id: number" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="name">Name:</label>
+      <input 
+        id="name" 
+        name="name" 
+        formControlName="name"
+        placeholder="Name" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="title">Title:</label>
+      <input 
+        id="title" 
+        name="title" 
+        formControlName="title"
+        placeholder="Title" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="url">Url:</label>
+      <input 
+        id="url" 
+        name="url" 
+        formControlName="url"
+        placeholder="Url" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="icon">Icon:</label>
+      <input 
+        id="icon" 
+        name="icon" 
+        formControlName="icon"
+        placeholder="Icon" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+
+    <button type="submit" class="form-container__submitBt">Submit</button>
+  </form>
+</div>

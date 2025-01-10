@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.left-column, .right-column {
+  width: 45%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-height: 200px;
+  position: relative;
+  background-color: #f9f9f9;
+}
+
+.item {
+  padding: 10px;
+  margin: 5px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  user-select: none;  /* Prevent text selection while dragging */
+}
+
+.item.dragging {
+  background-color: #dcdcdc;
+  opacity: 0.7;  /* Add opacity when dragging */
+  position: absolute;
+  pointer-events: none;  /* Prevent interactions while dragging */
+}
+
+.left-column .item, .right-column .item {
+  transition: transform 0.3s ease;
+}
+
+.left-column .dragging, .right-column .dragging {
+  transform: scale(1.05);  /* Slight scaling effect while dragging */
+}
+
+.item-over {
+  background-color: #f2f2f2;
+  border: 2px dashed #888;
+}

@@ -1,0 +1,96 @@
+<div class="container">
+  <form 
+    (ngSubmit)="onSubmit()" 
+    class="form-container" 
+    [formGroup]="form">
+    <h1 *ngIf="!currentProject; else elseH1">Add project</h1>
+    <ng-template #elseH1>
+      <h1>Edit project</h1>
+    </ng-template>
+    <section *ngIf="currentProject">
+      <label for="id">Id:</label>
+      <input
+        id="id" 
+        name="id" 
+        formControlName="id"
+        placeholder="Id: number" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="name">Name:</label>
+      <input 
+        id="name" 
+        name="name" 
+        formControlName="name"
+        placeholder="Name" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="img">Img:</label>
+      <input 
+        id="img" 
+        name="img" 
+        formControlName="img"
+        placeholder="Img" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="description">Description:</label>
+      <input 
+        id="description" 
+        name="description" 
+        formControlName="description"
+        placeholder="Description" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="linkGithub">Link Github:</label>
+      <input 
+        id="linkGithub" 
+        name="linkGithub" 
+        formControlName="linkGithub"
+        placeholder="Link Github" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="linkWebsite">Link Website:</label>
+      <input 
+        id="linkWebsite" 
+        name="linkWebsite" 
+        formControlName="linkWebsite"
+        placeholder="Link Website" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="startDate">Start Date:</label>
+      <input 
+        id="startDate" 
+        name="startDate" 
+        formControlName="startDate"
+        placeholder="Start Date" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <section>
+      <label for="endDate">End Date:</label>
+      <input 
+        id="endDate" 
+        name="endDate" 
+        formControlName="endDate"
+        placeholder="End Date" 
+        type="text" 
+        class="form-container__input"/>
+    </section>
+    <label for="">Skills:</label>
+    <div class="form-container__skill-group" *ngIf="currentProject">
+      <app-list-skills></app-list-skills>
+    </div>
+    <button type="submit" class="form-container__submitBt">Submit</button>
+  </form>
+</div>

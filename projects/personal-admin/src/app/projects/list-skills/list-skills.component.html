@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="left-column" (mousedown)="onMouseDown($event, 'left')">
+    <div class="item" *ngFor="let item of leftItems; let i = index" [attr.data-index]="i" (mousedown)="onMouseDown($event, 'left', item)">
+      {{ item }}
+    </div>
+  </div>
+
+  <div class="right-column" (mousedown)="onMouseDown($event, 'right')">
+    <div class="item" *ngFor="let item of rightItems; let i = index" [attr.data-index]="i" (mousedown)="onMouseDown($event, 'right', item)">
+      {{ item }}
+    </div>
+  </div>
+</div>

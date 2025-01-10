@@ -1,0 +1,147 @@
+header {
+  width: 1216px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__menu {
+  height: 39px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  height: 100%;
+}
+
+ul {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  font-size: 12px;
+  margin-left: 30px;
+}
+
+a {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.header__icon--theme {
+  margin-left: 18px;
+}
+
+.header__icon--menu {
+  display: none;
+}
+
+svg {
+  width: 18px;
+  height: 18px;
+}
+
+button {
+  width: 123px;
+  height: 39px;
+  font-family: 'Source Code Pro';
+  font-size: 12px;
+  color: var(--white);
+  background-color: var(--primary-dark);
+  border: none;
+  border-radius: 6px;
+  margin-left: 28px;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -70vw; /* Menu ẩn bên phải */
+  width: 70vw;
+  height: 100%;
+  background-color: #fff;
+  transition: right 0.3s ease-in-out;
+  z-index: 999; /* Đảm bảo menu hiển thị trên các phần tử khác */
+  padding: 20px;
+}
+
+.side-menu.open {
+  left: 0; /* Hiển thị menu khi thêm class 'open' */
+}
+
+.side-menu button {
+  position: absolute;
+  top: 20px;
+  left: 20px; /* Đặt nút đóng ở bên trái của menu */
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: #111827;
+  font-size: 18px;
+}
+
+
+
+@media (max-width: 1216px) {
+  header {
+    width: 100%;
+    padding: 0px 48px;
+  }
+
+  .header__body {
+    
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    padding: 0px 32px;
+  }
+}
+
+@media (max-width: 780px) {
+  header {
+    padding: 0px 28px;
+  }
+
+  li:not(.header__icon--github, .header__icon--theme, .header__icon--menu) {
+    display: none;
+  }
+
+  .header__icon--menu {
+    display: block;
+    margin-left: 18px;
+  }
+  
+  button {
+    display: none;
+  }
+}

@@ -1,0 +1,14 @@
+.home {
+  width: 100%;
+}
+
+.home__body {
+  display: flex;
+  flex-direction: row;
+}
+
+.home__body__content {
+  flex-grow: 1; /* Phần nội dung sẽ chiếm phần còn lại */
+  height: calc(100vh - 70px); /* Đảm bảo chiều cao của content là 100% */
+  overflow-y: auto; /* Cho phép cuộn dọc */
+}

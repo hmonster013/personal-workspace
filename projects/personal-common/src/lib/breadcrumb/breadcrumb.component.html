@@ -1,0 +1,9 @@
+<nav>
+  <span *ngFor="let breadcrumb of breadcrumbs; let i = index">
+    {{ breadcrumb.label }}
+    <ng-container *ngIf="i < breadcrumbs.length - 1; else lastBreadcrumb">
+      >
+    </ng-container>
+    <ng-template #lastBreadcrumb></ng-template>
+  </span>
+</nav>
