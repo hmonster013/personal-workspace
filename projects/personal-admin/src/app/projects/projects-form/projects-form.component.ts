@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { JCode, ModalService, ProjectsService, ToastService, ToastStatus, UtilsService } from 'personal-common';
+import { JCode, ModalService, ProjectsService, SkillsService, ToastService, ToastStatus, UtilsService } from 'personal-common';
 import { SkillUiComponent } from "../../../../../personal-common/src/lib/skill-ui/skill-ui.component";
 import { ListSkillsComponent } from "../list-skills/list-skills.component";
 
@@ -11,7 +11,7 @@ import { ListSkillsComponent } from "../list-skills/list-skills.component";
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    ListSkillsComponent
+    SkillUiComponent
 ],
   templateUrl: './projects-form.component.html',
   styleUrl: './projects-form.component.css'
@@ -21,17 +21,22 @@ export class ProjectsFormComponent {
   @Output() outputData = new EventEmitter<any>();
   form: any;
   response: any;
+  listSkills: any;
+  currentSkills: any;
+  isDropdownOpen = false;
 
   constructor(
     private modalService: ModalService,
     private toastService: ToastService,
     private projectsService: ProjectsService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private skillsService: SkillsService
   ) {}
 
   ngOnInit() {
     this.createForm();
     this.loadCurrentData();
+    this.getListSkills();
   }
 
   loadCurrentData() {
@@ -45,17 +50,46 @@ export class ProjectsFormComponent {
         linkWebsite: this.currentProject.linkWebsite,
         startDate: this.currentProject.startDate,
         endDate: this.currentProject.endDate,
-        projects: this.currentProject.projects
-      })
+        skillsVOs: this.currentProject.skillsVOs
+      });
+
+      this.currentSkills = this.currentProject.skillsVOs;
+    } else {
+      this.currentSkills = [];
     }
+
+  }
+
+  getListSkills() {
+    this.skillsService.list({page: 1, size: 999999}).subscribe(res => {
+      this.response = res;
+      if (this.response.status = JCode.SUCCESS) {
+        this.listSkills = this.response.data.list;
+      }
+    });
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  addSkill(skill: any) {
+    this.currentSkills.push(skill);
+  }
+
+  removeSkill(skill: any) {
+    this.currentSkills = this.currentSkills.filter((s: {id: number, icon: string, name: string}) => s !== skill);
   }
   
   onSubmit() {
+    this.form.patchValue({
+      skillsVOs: this.currentSkills
+    });
+
     if (this.currentProject) {
       this.form.get('id')?.enable();
-      const formData = this.utilsService.toFormData(this.form.value);
 
-      this.projectsService.update(formData).subscribe(res => {
+      this.projectsService.update(this.form.value).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
           this.toastService.show("Update skill [" + this.currentProject.id + "] success", ToastStatus.SUCCESS);
@@ -65,8 +99,7 @@ export class ProjectsFormComponent {
         }
       });
     } else {
-      const formData = this.utilsService.toFormData(this.form.value);
-      this.projectsService.create(formData).subscribe(res => {
+      this.projectsService.create(this.form.value).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
           this.toastService.show("Create skill success", ToastStatus.SUCCESS);
@@ -89,7 +122,7 @@ export class ProjectsFormComponent {
       linkWebsite: new FormControl(''),
       startDate: new FormControl(''),
       endDate: new FormControl(''),
-      projects: new FormControl(''),
+      skillsVOs: new FormControl(''),
     })
   }
 }

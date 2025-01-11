@@ -25,20 +25,31 @@
   margin-left: 20px;
 }
 
-.form-container__iconInput {
+.form-container__image-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.form-container__image-group img {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.form-container__quill-editor {
   display: flex;
   flex-direction: column;
 }
 
-.form-container__iconInput label {
+.form-container__quill-editor label {
   width: 100%;
+  text-align: start;
   margin-bottom: 16px;
-}
-
-.form-container__iconInput textarea {
-  width: 100%;
-  height: 100px;
-  border: 1px solid black;
 }
 
 .form-container__submitBt {

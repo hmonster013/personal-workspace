@@ -87,10 +87,30 @@
         type="text" 
         class="form-container__input"/>
     </section>
-    <label for="">Skills:</label>
-    <div class="form-container__skill-group" *ngIf="currentProject">
-      <app-list-skills></app-list-skills>
+    <div class="form-container__skill">
+      <div 
+      class="form-container__skill-group"
+      (click)="toggleDropdown()">
+        <div 
+          class="form-container__skill-item"
+          *ngFor="let skill of this.currentSkills">
+          <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+          <button type="button" (click)="removeSkill(skill)">X</button>
+        </div>
+      </div>
+
+      <div 
+        class="form-container__dropdown"
+        [ngClass]="{'form-container__dropdown--open': isDropdownOpen}">
+        <div 
+          *ngFor="let skill of listSkills"
+          class="form-container__dropdown__skill-item"
+          (click)="addSkill(skill)">
+          <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+        </div>
+      </div>
     </div>
+    
     <button type="submit" class="form-container__submitBt">Submit</button>
   </form>
 </div>

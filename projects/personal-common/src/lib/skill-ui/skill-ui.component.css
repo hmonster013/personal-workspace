@@ -24,8 +24,3 @@
   margin: auto 0px;
   text-align: center;
 }
-
-@media (max-width: 1216px) {
-  .skill-group__card {
-  }
-}

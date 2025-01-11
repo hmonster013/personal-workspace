@@ -28,14 +28,28 @@
         class="form-container__input"/>
     </section>
     <section>
-      <label for="companyImg">Company Img:</label>
+      <div class="form-container__image-group">
+        <div *ngIf="imageSrc">
+          <img [src]="imageSrc" alt="Uploaded Image"/>
+        </div>
+        <input 
+          type="file" 
+          id="file" 
+          name="file"
+          accept="image/*"
+          (change)="onFileChange($event)" 
+          required />
+      </div>
+    </section>
+    <section>
+      <label for="companyImg">Company img url:</label>
       <input 
-        id="companyImg" 
-        name="companyImg" 
-        formControlName="companyImg"
-        placeholder="Company Img" 
-        type="text" 
-        class="form-container__input"/>
+      id="companyImg" 
+      name="companyImg" 
+      formControlName="companyImg"
+      placeholder="Company Img" 
+      type="text" 
+      class="form-container__input"/>
     </section>
     <section>
       <label for="jobTitle">Job Title:</label>
@@ -44,16 +58,6 @@
         name="jobTitle" 
         formControlName="jobTitle"
         placeholder="Job Title" 
-        type="text" 
-        class="form-container__input"/>
-    </section>
-    <section>
-      <label for="description">Description:</label>
-      <input 
-        id="description" 
-        name="description" 
-        formControlName="description"
-        placeholder="Description" 
         type="text" 
         class="form-container__input"/>
     </section>
@@ -87,7 +91,14 @@
         type="text" 
         class="form-container__input"/>
     </section>
-
+    <section class="form-container__quill-editor">
+      <label for="description">Description:</label>
+      <quill-editor 
+        id="description" 
+        name="description"  
+        [modules]="modules" 
+        formControlName="description"></quill-editor>
+    </section>
     <button type="submit" class="form-container__submitBt">Submit</button>
   </form>
 </div>

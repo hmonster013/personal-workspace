@@ -26,7 +26,8 @@
               }
             ],
             "styles": [
-              "projects/personal-admin/src/styles.css"
+              "projects/personal-admin/src/styles.css",
+              "node_modules/quill/dist/quill.snow.css"
             ]
           },
           "configurations": {
@@ -94,7 +95,8 @@
               }
             ],
             "styles": [
-              "projects/personal-client/src/styles.css"
+              "projects/personal-client/src/styles.css",
+              "node_modules/quill/dist/quill.snow.css"
             ]
           },
           "configurations": {

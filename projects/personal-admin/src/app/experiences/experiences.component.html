@@ -29,10 +29,10 @@
       <tbody>
         <tr *ngFor="let experience of listExperiences">
           <td>{{experience.id}}</td>
-          <td>{{experience.companyImg}}</td>
+          <td><img src="{{experience.companyImg}}" alt="companyImg"></td>
           <td>{{experience.companyName}}</td>
           <td>{{experience.jobTitle}}</td>
-          <td>{{experience.description}}</td>
+          <td [innerHTML]="experience.description"></td>
           <td>{{experience.workingPeriod}}</td>
           <td>{{experience.startDate}}</td>
           <td>{{experience.endDate}}</td>

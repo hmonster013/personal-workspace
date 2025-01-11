@@ -62,7 +62,16 @@ export class ExperiencesComponent {
   }
 
   create() {
-    this.modalService.open(ExperiencesFormComponent);
+    const modalRef = this.modalService.open(ExperiencesFormComponent);
+
+    if (modalRef != null) {
+      modalRef.instance.outputData.subscribe((result) => {
+        console.log(result.data);
+        this.initListExperiences();
+      });
+    } else {
+      this.toastService.show("ERROR", ToastStatus.ERROR);
+    }
   }
 
   edit(currentExperience: any) {
@@ -77,7 +86,6 @@ export class ExperiencesComponent {
     } else {
       this.toastService.show("ERROR", ToastStatus.ERROR);
     }
-
   }
 
   remove(experienceId: any) {

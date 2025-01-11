@@ -7,6 +7,7 @@ import { LinksComponent } from './links/links.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard, URI } from 'personal-common';
+import { BlogComponent } from './blog/blog.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,11 @@ export const routes: Routes = [
                 path: URI.USER,
                 data: { breadcrumb: "Users"},
                 component: UserComponent
+            },
+            {
+                path: URI.BLOGS,
+                data: { breadcrumb: "Blogs" },
+                component: BlogComponent
             }
         ]
     },

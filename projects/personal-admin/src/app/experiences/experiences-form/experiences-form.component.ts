@@ -2,13 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExperiencesService, JCode, ModalService, ToastService, ToastStatus, UtilsService } from 'personal-common';
+import { QuillConfigModule, QuillModule } from 'ngx-quill';
+import Quill from 'quill';
 
 @Component({
   selector: 'app-experiences-form',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    QuillModule
   ],
   templateUrl: './experiences-form.component.html',
   styleUrl: './experiences-form.component.css'
@@ -18,6 +21,36 @@ export class ExperiencesFormComponent {
   @Output() outputData = new EventEmitter<any>();
   form: any;
   response: any;
+  selectedFile: File | null = null;
+  imageSrc: string | ArrayBuffer | null = null;
+
+  model: string = '';
+
+  modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote'],
+
+      // [{'header': 1}, {'header': 2}],               // custom button values
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+      [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
+      [{'direction': 'rtl'}],                         // text direction
+
+      // [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+      // [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+      // [{'color': []}, {'background': []}],
+      // [{'font': []}],
+      [{'align': []}],
+
+      ['clean'],                                       // remove formatting button
+
+      // ['link', 'image', 'video',]                   // link and image, video
+      ['link']                                         // link
+
+    ]
+  };
 
   constructor(
     private modalService: ModalService,
@@ -42,15 +75,34 @@ export class ExperiencesFormComponent {
         workingPeriod: this.currentExperience.workingPeriod,
         startDate: this.currentExperience.startDate,
         endDate: this.currentExperience.endDate
-      })
+      });
+
+      this.imageSrc = this.currentExperience.companyImg;
+    }
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.selectedFile = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageSrc = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedFile!);
     }
   }
   
   onSubmit() {
     if (this.currentExperience) {
       this.form.get('id')?.enable();
+      this.form.patchValue({
+        file: this.selectedFile
+      });
+      
       const formData = this.utilsService.toFormData(this.form.value);
 
+      console.log(formData.get('file'));
       this.experienceService.update(formData).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
@@ -61,9 +113,14 @@ export class ExperiencesFormComponent {
         }
       });
     } else {
+      this.form.patchValue({
+        file: this.selectedFile
+      });
+
       const formData = this.utilsService.toFormData(this.form.value);
       this.experienceService.create(formData).subscribe(res => {
         this.response = res;
+        console.log(this.response.status);
         if (this.response.status == JCode.SUCCESS) {
           this.toastService.show("Create experience success", ToastStatus.SUCCESS);
           this.outputData.emit({"data": "success"});
@@ -84,7 +141,8 @@ export class ExperiencesFormComponent {
       description: new FormControl(''),
       workingPeriod: new FormControl(''),
       startDate: new FormControl(''),
-      endDate: new FormControl('')
+      endDate: new FormControl(''),
+      file: new FormControl('')
     })
   }
 }

@@ -91,6 +91,7 @@
 /* HOME EXPERIENCE RIGHT */
 .home__experience--right {
   grid-area: 1 / 2;
+  min-width: 576px;
 }
 
 .home__experience--right p {

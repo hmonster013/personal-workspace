@@ -35,13 +35,59 @@
   margin-bottom: 16px;
 }
 
+.form-container__skill {
+  margin-bottom: 16px;
+  max-width: 641px;
+}
 
 .form-container__skill-group {
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   padding: 20px;
   border: 1px solid black;
   border-radius: 8px;
-  margin-bottom: 16px;
+}
+
+.form-container__skill-item {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  background-color: #E3E8ED;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  border-radius: 3px;
+}
+
+.form-container__skill-item button {
+  border: none;
+  background-color: #E3E8ED;
+  padding: 0px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-container__remove-skill-bt {
+  margin-right: 10px;
+  border: none;
+  background-color: #E3E8ED;
+}
+
+.form-container__dropdown {
+  display: none;
+  height: 100px;
+  border: none;
+  overflow-y: auto;
+}
+
+.form-container__dropdown--open {
+  display: block;
+}
+
+.form-container__dropdown__skill-item:hover {
+  border: 1px solid blue;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .form-container__submitBt {
