@@ -18,11 +18,21 @@ export class ProjectsService {
     return this.http.get(`${environment.apiUrl}/${URI.V1}/${URI.PROJECTS}/${id}`);
   }
 
-  create(formData: any) {
+  create(formValue: any, file: any) {
+    let formData = new FormData();
+
+    formData.append("requestJsonData", JSON.stringify(formValue));
+    formData.append('file', file);
+
     return this.http.post(`${environment.apiUrl}/${URI.V1}/${URI.PROJECTS}`, formData);
   }
 
-  update(formData: any) {
+  update(formValue: any, file: any) {
+    let formData = new FormData();
+
+    formData.append("requestJsonData", JSON.stringify(formValue));
+    formData.append('file', file);
+
     return this.http.put(`${environment.apiUrl}/${URI.V1}/${URI.PROJECTS}`, formData);
   }
 

@@ -28,7 +28,21 @@
         class="form-container__input"/>
     </section>
     <section>
-      <label for="img">Img:</label>
+      <div class="form-container__image-group">
+        <div *ngIf="imageSrc">
+          <img [src]="imageSrc" alt="Uploaded Image"/>
+        </div>
+        <input 
+          type="file" 
+          id="file" 
+          name="file"
+          accept="image/*"
+          (change)="onFileChange($event)" 
+          required />
+      </div>
+    </section>
+    <section>
+      <label for="img">Img url:</label>
       <input 
         id="img" 
         name="img" 

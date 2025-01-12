@@ -74,7 +74,16 @@ export class ProjectsComponent {
   }
 
   create() {
-    this.modalService.open(ProjectsFormComponent);
+    const modalRef = this.modalService.open(ProjectsFormComponent);
+
+    if (modalRef != null) {
+      modalRef.instance.outputData.subscribe((result) => {
+        console.log(result.data);
+        this.initListProjects();
+      });
+    } else {
+      this.toastService.show("ERROR", ToastStatus.ERROR);
+    }
   }
 
   edit(currentSkill: any) {

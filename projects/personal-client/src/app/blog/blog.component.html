@@ -1,0 +1,32 @@
+<div class="blog">
+  <button><- Back to Home</button>
+  <h2>Welcome to my blog</h2>
+  <div class="blog__body">
+    <div class="blog__body-left">
+      <div class="blog__body-left__content">
+        <div class="blog__body-left__blog-item">
+          <lib-blog-card-ui></lib-blog-card-ui>
+        </div>
+        <div class="blog__body-left__blog-item">
+          <lib-blog-card-ui></lib-blog-card-ui>
+        </div>
+        <div class="blog__body-left__blog-item">
+          <lib-blog-card-ui></lib-blog-card-ui>
+        </div>
+        <div class="blog__body-left__blog-item">
+          <lib-blog-card-ui></lib-blog-card-ui>
+        </div>
+      </div>
+    </div>
+    <div class="blog__body-right">
+      <h3>Skills</h3>
+      <div class="blog__body-right__content">
+        <div 
+        class="blog__body__skill-item"
+        *ngFor="let skill of listSkills">
+          <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

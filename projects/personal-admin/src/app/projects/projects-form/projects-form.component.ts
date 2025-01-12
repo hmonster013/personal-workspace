@@ -24,6 +24,8 @@ export class ProjectsFormComponent {
   listSkills: any;
   currentSkills: any;
   isDropdownOpen = false;
+  selectedFile: File | null = null;
+  imageSrc: any;
 
   constructor(
     private modalService: ModalService,
@@ -54,6 +56,7 @@ export class ProjectsFormComponent {
       });
 
       this.currentSkills = this.currentProject.skillsVOs;
+      this.imageSrc = this.currentProject.img;
     } else {
       this.currentSkills = [];
     }
@@ -73,6 +76,18 @@ export class ProjectsFormComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.selectedFile = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageSrc = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedFile!);
+    }
+  }
+
   addSkill(skill: any) {
     this.currentSkills.push(skill);
   }
@@ -88,8 +103,8 @@ export class ProjectsFormComponent {
 
     if (this.currentProject) {
       this.form.get('id')?.enable();
-
-      this.projectsService.update(this.form.value).subscribe(res => {
+      
+      this.projectsService.update(this.form.value, this.selectedFile).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
           this.toastService.show("Update skill [" + this.currentProject.id + "] success", ToastStatus.SUCCESS);
@@ -99,7 +114,7 @@ export class ProjectsFormComponent {
         }
       });
     } else {
-      this.projectsService.create(this.form.value).subscribe(res => {
+      this.projectsService.create(this.form.value, this.selectedFile).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
           this.toastService.show("Create skill success", ToastStatus.SUCCESS);
@@ -122,7 +137,7 @@ export class ProjectsFormComponent {
       linkWebsite: new FormControl(''),
       startDate: new FormControl(''),
       endDate: new FormControl(''),
-      skillsVOs: new FormControl(''),
+      skillsVOs: new FormControl('')
     })
   }
 }

@@ -48,6 +48,7 @@
 
 /* HOME EXPERIENCE */
 .home__experience {
+  width: 100%;
   padding: 92px 0px 92px 0px;
 }
 
@@ -56,6 +57,7 @@
 }
 
 .home__experience__body {
+  width: 100%;
   display: grid;
   grid-template: 1fr / 1fr 1fr;
   gap: 64px;
@@ -75,9 +77,14 @@
   align-items: center;
   padding-left: 20px;
   border: none;
+  cursor: pointer;
 }
 
 .home__experience--left button:hover {
+  background-color: var(--white-dark);
+}
+
+.home__experience--left--active {
   background-color: var(--white-dark);
 }
 
@@ -91,7 +98,6 @@
 /* HOME EXPERIENCE RIGHT */
 .home__experience--right {
   grid-area: 1 / 2;
-  min-width: 576px;
 }
 
 .home__experience--right p {
@@ -132,13 +138,16 @@
 }
 
 .home__project__body__card {
+  width: 584px;
   padding: 26px;
   font-weight: 400;
   border-radius: 10px;
+  cursor: pointer;
+  background-color: #E3E8ED;
 }
 
 .home__project__body__card:hover {
-  background-color: var(--white-dark);
+  background-color: #F7F3F3;
 }
 
 .home__project__body__card h3{
@@ -151,6 +160,7 @@
 }
 
 .home__project__body__card img {
+  width: 100%;
   margin-bottom: 26px;
 }
 
@@ -162,12 +172,18 @@
 .home__project__body__card__tags {
   display: flex;
   flex-direction: row;
-  position: relative;
   margin-bottom: 12px;
+  justify-content: space-between;
+}
+
+.home__project__body__card__skill-item {
+  margin-right: 2px;
+  margin-bottom: 2px;
 }
 
 .home__project__body__card__tags__text {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 
@@ -176,8 +192,8 @@
 }
 
 .home__project__body__card__tags__icons{
-  position: absolute;
-  right: 0px;
+  display: flex;
+  flex-direction: row;
 }
 
 .home__project__body__card__tags__icons a {
@@ -209,16 +225,7 @@
 @media (max-width: 1216px) {
   .home__body {
     width: 100%;
-    padding: 0px 48px;
     box-sizing: border-box;
-  }
-
-  app-header {
-    width: 100%;
-  }
-
-  app-footer {
-    width: 100%;
   }
 
   /* HOME INTRODUCTION */
@@ -235,6 +242,10 @@
     grid-template: auto / 1fr;
   }
 
+  .home__project__body__card {
+    width: 100%;
+  }
+
   .home__project__body__card img {
     width: 100%;
   }
@@ -247,10 +258,6 @@
 }
 
 @media (max-width: 1024px) {
-  .home__body {
-    padding: 0px 32px;
-  }
-
   .home__contact__body {
     background-color: var(--white-dark);
     padding: 80px 0px;
@@ -259,9 +266,6 @@
 }
 
 @media (max-width: 780px) {
-  .home__body {
-    padding: 0px 28px;
-  }
   /* HOME INTRODUCE */
   .home__introduce h1 {
     font-size: 36px;
@@ -298,7 +302,7 @@
   .home__experience--right {
     width: 100%;
   }
-
+  
   /* HOME PROJECT */
   .home__project h2 {
     font-size: 30px;
@@ -318,19 +322,11 @@
     flex-direction: column-reverse;
   }
 
-  .home__project__body__card__tags__icons {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-  }
-
   .home__project__body__card__tags__icons  a{
     margin: 0px;
   }
 }
 
 @media (max-width: 400px) {
-  .home__body {
-    padding: 0px 10px;
-  }
+
 }

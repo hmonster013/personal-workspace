@@ -11,7 +11,11 @@ export class UtilsService {
     const formData = new FormData();
   
     Object.entries(formValue).forEach(([key, value]) => {
-      formData.append(key, value);
+      if (Array.isArray(value) || typeof value === 'object') {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, value);
+      }
     });
   
     return formData;

@@ -18,6 +18,12 @@ export class LinksService {
     return this.http.get(`${environment.apiUrl}/${URI.V1}/${URI.LINKS}/${id}`);
   }
 
+  getByListName(listName: any) {
+    let nameString = listName.join(',');
+
+    return this.http.get(`${environment.apiUrl}/${URI.V1}/${URI.LINKS}/${URI.VIEW}/${URI.LIST}/${nameString}`);
+  }
+
   create(formData: any) {
     return this.http.post(`${environment.apiUrl}/${URI.V1}/${URI.LINKS}`, formData);
   }

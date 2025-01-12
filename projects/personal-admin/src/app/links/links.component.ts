@@ -61,7 +61,16 @@ export class LinksComponent {
   }
 
   create() {
-    this.modalService.open(LinksFormComponent);
+    const modalRef = this.modalService.open(LinksFormComponent);
+
+    if (modalRef != null) {
+      modalRef.instance.outputData.subscribe((result) => {
+        console.log(result.data);
+        this.initListLinks();
+      });
+    } else {
+      this.toastService.show("ERROR", ToastStatus.ERROR);
+    }
   }
 
   edit(currentLinks: any) {

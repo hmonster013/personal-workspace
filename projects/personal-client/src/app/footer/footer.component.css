@@ -46,6 +46,10 @@ a {
   text-decoration: none;
 }
 
+.footer__icon {
+  cursor: pointer;
+}
+
 .footer__icon--theme {
   margin-left: 18px;
 }

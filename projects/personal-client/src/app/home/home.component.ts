@@ -1,15 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { HeaderComponent } from "../header/header.component";
-import { FooterComponent } from "../footer/footer.component";
-import { ExperiencesService, JCode, JConstants, SkillsService, SkillUiComponent, ToastService, ToastStatus, UtilsService } from 'personal-common';
-import { HttpClientModule } from '@angular/common/http';
+import { ExperiencesService, JCode, JConstants, LinkNames, LinksService, ProjectsService, SkillsService, SkillUiComponent, ToastService, ToastStatus, UtilsService } from 'personal-common';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   imports: [
-    HeaderComponent, 
-    FooterComponent, 
     SkillUiComponent,
     CommonModule
   ],
@@ -19,13 +14,16 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit{
   listSkills: any;
   listExperiences: any;
+  listProjects: any;
+  selectedExperience: any;
   response: any;
 
   constructor(
     private skillsService: SkillsService,
     private utilsService: UtilsService,
     private toastService: ToastService,
-    private experiencesService: ExperiencesService
+    private experiencesService: ExperiencesService,
+    private projectsService: ProjectsService
   ) {
 
   }
@@ -33,6 +31,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.getListSkills();
     this.getListExperiences();
+    this.getListProjects();
   }
 
   getListSkills() {
@@ -63,9 +62,31 @@ export class HomeComponent implements OnInit{
       
       if (this.response.status == JCode.SUCCESS) {
         this.listExperiences = this.response.data.list;
+        this.selectedExperience = this.listExperiences[0];
       } else {
         this.toastService.show("Load experience error", ToastStatus.ERROR);
       }
     });
+  }
+
+  getListProjects() {
+    let formAll = {
+      page: JConstants.PAGE,
+      size: JConstants.MAX
+    }
+
+    this.projectsService.list(formAll).subscribe(res => {
+      this.response = res;
+
+      if (this.response.status == JCode.SUCCESS) {
+        this.listProjects = this.response.data.list;
+      } else {
+        this.toastService.show("Load project error", ToastStatus.ERROR);
+      }
+    })
+  }
+
+  changeExperience(experience: any) {
+    this.selectedExperience = experience;
   }
 }

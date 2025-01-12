@@ -1,0 +1,59 @@
+.blog {
+  width: 1216px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-top: 92px;
+}
+
+.blog button {
+  height: 39px;
+  padding: 5px;
+  border-radius: 6px;
+  font-family: 'Source Code Pro';
+  font-size: 12px;
+  border: 1px solid black;
+  margin-bottom: 16px;
+}
+
+.blog h2 {
+  margin-bottom: 24px;
+}
+
+lib-blog-card-ui {
+  margin-bottom: 16px;
+}
+
+.blog__body {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.blog__body-left {
+  width: 100%;
+  margin-right: 30px;
+}
+
+.blog__body-left__blog-item {
+  margin-bottom: 16px;
+}
+
+.blog__body-right__content {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 350px;
+}
+
+.blog__body__skill-item {
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 1216px) {
+  .blog {
+    width: 100%;
+  }
+}

@@ -46,6 +46,10 @@ a {
   text-decoration: none;
 }
 
+.header__icon {
+  cursor: pointer;
+}
+
 .header__icon--theme {
   margin-left: 18px;
 }
