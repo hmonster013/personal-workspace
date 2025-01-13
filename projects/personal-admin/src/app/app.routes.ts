@@ -8,6 +8,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard, URI } from 'personal-common';
 import { BlogComponent } from './blog/blog.component';
+import { BlogFormComponent } from './blog/blog-form/blog-form.component';
 
 export const routes: Routes = [
     {
@@ -45,6 +46,11 @@ export const routes: Routes = [
                 path: URI.BLOGS,
                 data: { breadcrumb: "Blogs" },
                 component: BlogComponent
+            },
+            {
+                path: URI.BLOG_FORM,
+                data: { breadcrumb: "Blog Form" },
+                component: BlogFormComponent
             }
         ]
     },

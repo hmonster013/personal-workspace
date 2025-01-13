@@ -1,0 +1,132 @@
+<div class="container">
+  <form 
+    (ngSubmit)="onSubmit()" 
+    class="form-container" 
+    [formGroup]="form">
+    <div class="form-container--left">
+      <h1 *ngIf="!currentBlog; else elseH1">Add blog</h1>
+      <ng-template #elseH1>
+        <h1>Edit blog</h1>
+      </ng-template>
+      <section *ngIf="currentBlog">
+        <label for="id">Id:</label>
+        <input
+          id="id" 
+          name="id" 
+          formControlName="id"
+          placeholder="Id: number" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <section>
+        <label for="title">Title:</label>
+        <input 
+          id="title" 
+          name="title" 
+          formControlName="title"
+          placeholder="Title" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <section>
+        <div class="form-container__image-group">
+          <div *ngIf="imageSrc">
+            <img [src]="imageSrc" alt="Uploaded Image"/>
+          </div>
+          <input 
+            type="file" 
+            id="file" 
+            name="file"
+            accept="image/*"
+            (change)="onFileChange($event)" 
+            required />
+        </div>
+      </section>
+      <section>
+        <label for="imgUrl">Img url:</label>
+        <input 
+          id="imgUrl" 
+          name="imgUrl" 
+          formControlName="imgUrl"
+          placeholder="Img Url" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <section>
+        <label for="description">Description:</label>
+        <input 
+          id="description" 
+          name="description" 
+          formControlName="description"
+          placeholder="Description" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <section>
+        <label for="status">Status:</label>
+        <input 
+          id="status" 
+          name="status" 
+          formControlName="status"
+          placeholder="Status" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <section>
+        <label for="createDate">Create Date:</label>
+        <input 
+          id="createDate" 
+          name="createDate" 
+          formControlName="createDate"
+          placeholder="Create Date" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <section>
+        <label for="updateDate">Update Date:</label>
+        <input 
+          id="updateDate" 
+          name="updateDate" 
+          formControlName="updateDate"
+          placeholder="Update Date" 
+          type="text" 
+          class="form-container__input"/>
+      </section>
+      <div class="form-container__skill">
+        <div 
+        class="form-container__skill-group"
+        (click)="toggleDropdown()">
+          <div 
+            class="form-container__skill-item"
+            *ngFor="let skill of this.currentSkills">
+            <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+            <button type="button" (click)="removeSkill(skill)">X</button>
+          </div>
+        </div>
+  
+        <div 
+          class="form-container__dropdown"
+          [ngClass]="{'form-container__dropdown--open': isDropdownOpen}">
+          <div 
+            *ngFor="let skill of listSkills"
+            class="form-container__dropdown__skill-item"
+            (click)="addSkill(skill)">
+            <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+          </div>
+        </div>
+      </div>
+      
+      <button type="submit" class="form-container__submitBt">Submit</button>
+    </div>
+    <div class="form-container--right">
+      <section class="form-container__quill-editor">
+        <h1>Content:</h1>
+        <quill-editor 
+          id="content" 
+          name="content"  
+          [modules]="modules" 
+          formControlName="content"></quill-editor>
+      </section>
+    </div>
+  </form>
+</div>

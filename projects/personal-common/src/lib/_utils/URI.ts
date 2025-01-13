@@ -16,7 +16,9 @@ export class URI {
     public static readonly ADMIN: string = "admin";
     public static readonly ALL: string = "all";
     public static readonly LOGIN: string = 'login';
-    public static readonly BLOGS: string = 'blog';
+    public static readonly BLOGS: string = 'blogs';
     public static readonly VIEW: string = "view";
+    public static readonly BLOG_FORM: string = 'blog-form';
+    public static readonly ABOUT: string = 'about';
   }
   

@@ -18,18 +18,20 @@ export class ExperiencesService {
     return this.http.get(`${environment.apiUrl}/${URI.V1}/${URI.EXPERIENCES}/${id}`);
   }
 
-  create(formData: any) {
-    if (!formData.get('file') || formData.get('file') == 'null') {
-      formData.delete('file');
-    }
+  create(formValue: any, file: any) {
+    let formData = new FormData();
+
+    formData.append("requestJsonData", JSON.stringify(formValue));
+    formData.append("file", file);
     
     return this.http.post(`${environment.apiUrl}/${URI.V1}/${URI.EXPERIENCES}`, formData);
   }
 
-  update(formData: any) {
-    if (!formData.get('file') || formData.get('file') == 'null') {
-      formData.delete('file');
-    }
+  update(formValue: any, file: any) {
+    let formData = new FormData();
+
+    formData.append("requestJsonData", JSON.stringify(formValue));
+    formData.append("file", file);
     
     return this.http.put(`${environment.apiUrl}/${URI.V1}/${URI.EXPERIENCES}`, formData);
   }

@@ -96,14 +96,8 @@ export class ExperiencesFormComponent {
   onSubmit() {
     if (this.currentExperience) {
       this.form.get('id')?.enable();
-      this.form.patchValue({
-        file: this.selectedFile
-      });
-      
-      const formData = this.utilsService.toFormData(this.form.value);
 
-      console.log(formData.get('file'));
-      this.experienceService.update(formData).subscribe(res => {
+      this.experienceService.update(this.form.value, this.selectedFile).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
           this.toastService.show("Update experience [" + this.currentExperience.id + "] success", ToastStatus.SUCCESS);
@@ -113,12 +107,7 @@ export class ExperiencesFormComponent {
         }
       });
     } else {
-      this.form.patchValue({
-        file: this.selectedFile
-      });
-
-      const formData = this.utilsService.toFormData(this.form.value);
-      this.experienceService.create(formData).subscribe(res => {
+      this.experienceService.create(this.form.value, this.selectedFile).subscribe(res => {
         this.response = res;
         console.log(this.response.status);
         if (this.response.status == JCode.SUCCESS) {
@@ -141,8 +130,7 @@ export class ExperiencesFormComponent {
       description: new FormControl(''),
       workingPeriod: new FormControl(''),
       startDate: new FormControl(''),
-      endDate: new FormControl(''),
-      file: new FormControl('')
+      endDate: new FormControl('')
     })
   }
 }

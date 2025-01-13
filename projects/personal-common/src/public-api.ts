@@ -25,6 +25,7 @@ export * from './lib/_services/theme.service';
 export * from './lib/_services/toast.service';
 export * from './lib/_services/user.service';
 export * from './lib/_services/utils.service';
+export * from './lib/_services/blog.service';
 
 // UTILS
 export * from './lib/_utils/CommonCode';

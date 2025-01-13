@@ -1,5 +1,79 @@
-<quill-editor [modules]="modules" [(ngModel)]="model"></quill-editor>
+<div 
+  class="container"
+  *ngIf="!isFormOpen">
+  <div class="breadcrumb-container">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <h1>Blogs</h1>
+  <div class="filter-container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <input formControlName="name" type="text" placeholder="Project name" class="filter-container__nameInput">
+      <button type="submit">Search</button>
+      <button type="button" (click)="create()" class="filter-container__createButton">Create</button>
+    </form>
+  </div>
+  <hr>
+  <div class="container__table">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Img</th>
+          <!-- <th class="container__table__content">Content</th> -->
+          <th>Description</th>
+          <th>Status</th>
+          <th>Create Date</th>
+          <th>Update Date</th>
+          <th>Skills</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let blog of listBlogs">
+          <td>{{blog.id}}</td>
+          <td>{{blog.title}}</td>
+          <td><img src="{{blog.imgUrl}}" alt="img"></td>
+          <!-- <td>{{blog.content}}</td> -->
+          <td>{{blog.description}}</td>
+          <td>{{blog.status}}</td>
+          <td>{{blog.createDate}}</td>
+          <td>{{blog.updateDate}}</td>
+          <td class="container__table__skillTd">
+            <div class="container__table__skillItem" *ngFor="let skill of blog.skillsVOs">
+              <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+            </div>
+          </td>
+          <td>
+            <div class="container__table--action" (click)="openPopup(blog.id)">
+              <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                </svg>
+              </i>
+              <div class="container__table__popup" 
+                   [ngClass]="{'container__table__popup--active': activePopup === blog.id}">
+                <button>View</button>
+                <button (click)="edit(blog)">Update</button>
+                <hr>
+                <button (click)="remove(blog.id)">Remove</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container__paging">
+      <button (click)="goToPage(page - 1)" [disabled]="page === 1"><</button>
+      <ng-container *ngFor="let tPage of listPage">
+        <button (click)="goToPage(tPage)" [ngClass]="{'active': page == tPage}">{{tPage}}</button>
+      </ng-container>
+      <button (click)="goToPage(page + 1)" [disabled]="page === totalPages">></button>
+    </div>
+  </div>
+</div>
 
-<div [innerHTML]="model"></div>
-
-{{model}}
+<app-blog-form 
+  *ngIf="isFormOpen"
+  [currentBlog]="selectedBlog"
+></app-blog-form>

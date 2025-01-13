@@ -1,0 +1,161 @@
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 20px 0px;
+}
+
+.container h1 {
+  font-size: 31.25px;
+  margin: 10px 32px 0px 32px;
+}
+
+.container hr {
+}
+
+.container app-popup {
+  display: none;
+}
+
+.container__app-popup--active {
+  display: block;
+}
+
+.breadcrumb-container {
+  margin: 0px 32px;
+}
+
+.filter-container {
+  position: relative;
+  margin: 24px 32px;
+}
+
+.filter-container button {
+  width: 100%;
+  max-width: 143px;
+  height: 37px;
+  padding: 10px 24px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin: 0px 0px 0px 16px;
+}
+
+.filter-container__createButton {
+  position: absolute;
+  right: 0;
+}
+
+.filter-container__nameInput {
+  width: 100%;
+  max-width: 320px;
+  height: 37px;
+  border-radius: 6px;
+  padding: 8px 32px 8px 40px;
+  background-image: url(../../assets/icons/search.svg);
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  border: 1px solid black;
+}
+
+.container__table {
+  position: relative;
+  margin: 0px 32px;
+}
+
+td.container__table__content {
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container__table img {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.container__table table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+.container__table th,
+td {
+  padding: 13px 25px;
+  border-bottom: 1px solid black;
+}
+
+.container__table td {
+  text-align: start;
+}
+
+.container__table__skillTd {
+  width: 200px;
+}
+
+.container__table__skillItem {
+  margin-bottom: 10px;
+}
+
+.container__paging {
+  margin: 16px 0px;
+  position: absolute;
+  right: 0px;
+}
+
+.container__paging button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.container__paging button.active {
+  background-color: blue;
+  color: white;
+}
+
+.container__table--action {
+  width: 42px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  position: relative;
+}
+
+.container__table--action:hover {
+  background-color: gainsboro;
+}
+
+.container__table__popup {
+  display: none;
+  width: 159px;
+  height: auto;
+  position: absolute;
+  bottom: -112px;
+  right: 0px;
+  z-index: 999;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.container__table__popup--active {
+  display: block;
+}
+
+.container__table__popup button {
+  width: 100%;
+  height: 36px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.container__table__popup button:hover {
+  background-color: gainsboro;
+}
