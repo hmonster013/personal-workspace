@@ -14,6 +14,10 @@ export class BlogService {
     return this.http.post(`${environment.apiUrl}/${URI.V1}/${URI.BLOGS}/${URI.LIST}`, formData);
   }
 
+  viewDataById(id: string) {
+    return this.http.get(`${environment.apiUrl}/${URI.V1}/${URI.BLOGS}/${URI.VIEW}/${id}`);
+  }
+
   getById(id: string) {
     return this.http.get(`${environment.apiUrl}/${URI.V1}/${URI.BLOGS}/${id}`);
   }

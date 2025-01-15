@@ -76,15 +76,6 @@ svg {
   footer {
     padding: 0px 28px;
   }
-
-  li:not(.footer__icon--github, .footer__icon--theme, .footer__icon--menu) {
-    display: none;
-  }
-
-  .footer__icon--menu {
-    display: block;
-    margin-left: 18px;
-  }
   
   button {
     display: none;

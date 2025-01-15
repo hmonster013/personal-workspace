@@ -10,7 +10,6 @@ import { flatMap } from 'rxjs';
 })
 export class HeaderComponent {
   isDarkMode = false;
-  isMenuOpen = false;
 
   constructor(
     private themeService: ThemeService,
@@ -20,22 +19,6 @@ export class HeaderComponent {
   toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleTheme(this.isDarkMode);
-  }
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-    const sideMenu = document.getElementById('sideMenu');
-    if (sideMenu) {
-      sideMenu.classList.toggle('open', this.isMenuOpen);
-    }
-  }
-
-  closeMenu() {
-    this.isMenuOpen = false;
-    const sideMenu = document.getElementById('sideMenu');
-    if (sideMenu) {
-      sideMenu.classList.remove('open');
-    }
   }
 
   logout() {

@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('http://localhost:8081/v1/image/view/anime-boy-chill-digital-art-hd-wallpaper-uhdpaper.com-284@0@j.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.card {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #2A3759;
+  color: white;
+  padding: 32px;
+  position: absolute;
+  right: 150px;
+}
+
+.card button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* HEADER */
+.card-header {
+  margin-bottom: 16px;
+}
+
+/* BODY */
+.card-body {
+  position: relative;
+}
+
+.card-body__content {
+  margin-bottom: 20px;
+}
+
+.card-body__content label {
+  margin-right: 10px;
+}
+
+.card-body__content input {
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.invalid-feedback {
+  position: absolute;
+  right: 0px;
+  color: red;
+}
+
+@media (max-width: 550px) {
+  .card {
+    position: static;
+    margin: 0px 10px;
+  }
+
+  .card-body__content input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}

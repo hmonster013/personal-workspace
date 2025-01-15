@@ -1,1 +1,68 @@
-<p>about works!</p>
+<div class="container">
+  <div class="about-container">
+    <div class="about-container__header">
+      <img src="http://localhost:8081/v1/image/view/gratisography-augmented-reality-800x525.jpg" alt="avatar-img">
+      <h1>Tui là Huy</h1>
+      <p>Data Engineer | Backend Dev | Culi</p>
+    </div>
+    <div class="about-container__body">
+      <div class="about-container__body__content">
+        <div class="about-container__body__content--left">
+          <h4>About</h4>
+        </div>
+        <div class="about-container__body__content--right">
+          I'm Huy, a passionate Data Engineer and Backend Developer who thrives on solving complex problems and delivering efficient solutions. With a strong foundation in both web development and big data technologies, I specialize in building scalable backend systems, designing robust data pipelines, and optimizing performance across various platforms.I'm also an enthusiastic learner and a hands-on practitioner, always seeking new challenges to enhance my skills. Whether it's mastering new frameworks, fine-tuning systems for high efficiency, or collaborating in dynamic team environments, I'm committed to delivering impactful results. Let's connect and create something amazing together! 🚀
+        </div>
+      </div>
+      <div class="about-container__body__content">
+        <div class="about-container__body__content--left">
+          <h4>Skill</h4>
+        </div>
+        <div class="about-container__body__content--right">
+          <div class="about-container__skill-group">
+            <div 
+              class="about-container__skill-item"
+              *ngFor="let skill of listSkills">
+              <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-container__body__content">
+        <div class="about-container__body__content--left">
+          <h4>Experience</h4>
+        </div>
+        <div class="about-container__body__content--right">
+          <div class="about-container__body__content__card">
+            
+          </div>
+        </div>
+      </div>
+      <div class="about-container__body__content">
+        <div class="about-container__body__content--left">
+          <h4>Education</h4>
+        </div>
+        <div class="about-container__body__content--right">
+          <div class="about-container__body__content__card">
+            <p>Information Systems</p>
+            <p>Công nghệ giao thông vân tải</p>
+            <p>2021 - 2025</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-container__body__content">
+        <div class="about-container__body__content--left">
+          <h4>Certifications</h4>
+        </div>
+        <div class="about-container__body__content--right">
+          <div class="about-container__body__content__card">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-container__footer">
+
+    </div>
+  </div>
+</div>

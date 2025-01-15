@@ -1,20 +1,20 @@
 <div class="blog">
-  <button><- Back to Home</button>
+  <button (click)="goToHome()"><- Back to Home</button>
   <h2>Welcome to my blog</h2>
   <div class="blog__body">
     <div class="blog__body-left">
       <div class="blog__body-left__content">
-        <div class="blog__body-left__blog-item">
-          <lib-blog-card-ui></lib-blog-card-ui>
+        <div 
+          class="blog__body-left__blog-item"
+          *ngFor="let blog of listBlogs">
+          <lib-blog-card-ui [currentBLog]="blog"></lib-blog-card-ui>
         </div>
-        <div class="blog__body-left__blog-item">
-          <lib-blog-card-ui></lib-blog-card-ui>
-        </div>
-        <div class="blog__body-left__blog-item">
-          <lib-blog-card-ui></lib-blog-card-ui>
-        </div>
-        <div class="blog__body-left__blog-item">
-          <lib-blog-card-ui></lib-blog-card-ui>
+        <div class="container__paging">
+          <button (click)="goToPage(page - 1)" [disabled]="page === 1"><</button>
+          <ng-container *ngFor="let tPage of listPage">
+            <button (click)="goToPage(tPage)" [ngClass]="{'active': page == tPage}">{{tPage}}</button>
+          </ng-container>
+          <button (click)="goToPage(page + 1)" [disabled]="page === totalPages">></button>
         </div>
       </div>
     </div>

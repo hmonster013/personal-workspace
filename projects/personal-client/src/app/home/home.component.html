@@ -14,8 +14,7 @@
     <div class="home__experience">
       <h2>My experience</h2>
       <div class="home__experience__body">
-        <div 
-          class="home__experience--left">
+        <div class="home__experience--left">
           <button 
             *ngFor="let experience of listExperiences"
             [ngClass]="{'home__experience--left--active': experience.id == selectedExperience?.id}"

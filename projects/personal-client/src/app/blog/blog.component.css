@@ -16,6 +16,11 @@
   font-size: 12px;
   border: 1px solid black;
   margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.blog button:hover {
+  
 }
 
 .blog h2 {
@@ -35,6 +40,7 @@ lib-blog-card-ui {
 .blog__body-left {
   width: 100%;
   margin-right: 30px;
+  position: relative;
 }
 
 .blog__body-left__blog-item {
@@ -52,8 +58,43 @@ lib-blog-card-ui {
   margin-bottom: 3px;
 }
 
-@media (max-width: 1216px) {
+/* PAGING */
+.container__paging {
+  margin: 16px 0px;
+  position: absolute;
+  right: 0px;
+}
+
+.container__paging button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: white;
+  border-radius: 6px;
+}
+
+
+.container__paging button.active {
+  background-color: blue;
+  color: white;
+}
+
+@media (max-width: 950px) {
   .blog {
     width: 100%;
+  }
+
+  .blog__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog__body-left {
+    width: 100%;
+  }
+
+  .blog__body-right {
+    width: 100%;
+    margin-top: 92px;
   }
 }

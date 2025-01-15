@@ -1,4 +1,6 @@
-<div class="side-menu">
+<div 
+  class="side-menu"
+  [ngClass]="{'side-menu--collapsed': isCollapsed}">
   <nav>
     <ul class="side-menu__list">
       <li
@@ -6,12 +8,20 @@
         class="side-menu__item"
         [class.side-menu__item--dropdown]="item.children"
         (click)="toggleDropdown(item.title, $event)"
-        [ngClass]="{'active': activeItem == item.title}">
-        <a 
-          [routerLink]="item.link || '#'" 
-          (click)="onLinkClick(item.title)" 
+        (click)="onLinkClick(item.title)"
+        [ngClass]="{'active': activeItem == item.title}"
+        [routerLink]="item.link || '#'" >
+        <div
+          class="side-menu__item--icon"
+          [ngClass]="{'side-menu__link--active': activeItem == item.title}"
+          [innerHTML]="getSanitizedIcon(item.icon)">
+        </div>
+        <a
           class="side-menu__link"
-          [ngClass]="{'side-menu__link--active': activeItem == item.title}">
+          [ngClass]="{
+            'side-menu__link--active': activeItem == item.title,
+            'collapsed': isCollapsed
+            }">
           {{ item.title }}</a>
         <ul
           *ngIf="item.children"
@@ -25,13 +35,21 @@
         </ul>
       </li>
     </ul>
-    <div class="side-menu__footer">
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
-        </svg>
-        <span>Collapsed View</span>
-      </p>
+    <div 
+      class="side-menu__footer"
+      (click)="onCollapsed()"
+      [ngClass]="{'side-menu--collapsed': isCollapsed}">
+      <div 
+        class="side-menu__item">
+        <div class="side-menu__item--icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+          </svg>
+        </div>
+        <a 
+          class="side-menu__link"
+          [ngClass]="{'collapsed': isCollapsed}">Collapsed View</a>
+      </div>
     </div>
   </nav>
 </div>

@@ -1,12 +1,14 @@
 <div class="card-blog">
-  <p>28-05-2003</p>
-  <h4>PySparkCode #1: Using Datetime functions</h4>
-  <div class="card-blog__skill-group">
-    <div class="card-blog__skill-item">
-
-    </div>
-  </div>
+  <p> {{currentBLog.createDate | date: 'MM/yyyy'}} </p>
+  <h4><a href="/blogs/{{currentBLog.id}}">{{currentBLog.title}}</a></h4>
   <div class="card-blog__description">
-    <p>Getting started with applying datetime functions to dataframe in PysSpark</p>
+    <p> {{currentBLog.description}} </p>
+  </div>
+  <div class="card-blog__skill-group">
+    <div 
+      class="card-blog__skill-item"
+      *ngFor="let skill of currentBLog.skillsVOs">
+      <lib-skill-ui [currentSkill]="skill"></lib-skill-ui>
+    </div>
   </div>
 </div>

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
-import { JCode, ModalService, ProjectsService, SkillsService, SkillUiComponent, ToastService, ToastStatus, UtilsService } from 'personal-common';
+import { BlogService, JCode, ModalService, ProjectsService, SkillsService, SkillUiComponent, ToastService, ToastStatus, UtilsService } from 'personal-common';
 
 @Component({
   selector: 'app-blog-form',
@@ -18,7 +19,6 @@ import { JCode, ModalService, ProjectsService, SkillsService, SkillUiComponent, 
 })
 export class BlogFormComponent {
   @Input() currentBlog: any;
-  @Output() outputData = new EventEmitter<any>();
   form: any;
   response: any;
   listSkills: any;
@@ -27,41 +27,39 @@ export class BlogFormComponent {
   selectedFile: File | null = null;
   imageSrc: any;
 
-    // Quill setup
-    model: string = '';
-  
-    modules = {
-      toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote'],
-  
-        [{'header': 1}, {'header': 2}],               // custom button values
-        [{'list': 'ordered'}, {'list': 'bullet'}],
-        [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
-        [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
-        [{'direction': 'rtl'}],                         // text direction
-  
-        // [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
-        // [{'header': [1, 2, 3, 4, 5, 6, false]}],
-  
-        // [{'color': []}, {'background': []}],
-        // [{'font': []}],
-        [{'align': []}],
-  
-        ['clean'],                                       // remove formatting button
-  
-        // ['link', 'image', 'video',]                   // link and image, video
-        ['link']                                         // link
-  
-      ]
-    };
+  // Quill setup
+  model: string = '';
+
+  modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+      ['link', 'image', 'video', 'formula'],
+    
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+    
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+    
+      ['clean']                                         // remove formatting button
+    ]
+  };
 
   constructor(
     private modalService: ModalService,
     private toastService: ToastService,
-    private projectsService: ProjectsService,
+    private blogsService: BlogService,
     private utilsService: UtilsService,
-    private skillsService: SkillsService
+    private skillsService: SkillsService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -133,27 +131,26 @@ export class BlogFormComponent {
     if (this.currentBlog) {
       this.form.get('id')?.enable();
       
-      this.projectsService.update(this.form.value, this.selectedFile).subscribe(res => {
+      this.blogsService.update(this.form.value, this.selectedFile).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
-          this.toastService.show("Update skill [" + this.currentBlog.id + "] success", ToastStatus.SUCCESS);
-          this.outputData.emit({"data": "success"});
+          this.toastService.show("Update blog [" + this.currentBlog.id + "] success", ToastStatus.SUCCESS);
+          this.router.navigate(['/blogs']);
         } else {
-          this.toastService.show("Update skill [" + this.currentBlog.id + "] error", ToastStatus.ERROR);
+          this.toastService.show("Update blog [" + this.currentBlog.id + "] error", ToastStatus.ERROR);
         }
       });
     } else {
-      this.projectsService.create(this.form.value, this.selectedFile).subscribe(res => {
+      this.blogsService.create(this.form.value, this.selectedFile).subscribe(res => {
         this.response = res;
         if (this.response.status == JCode.SUCCESS) {
-          this.toastService.show("Create skill success", ToastStatus.SUCCESS);
-          this.outputData.emit({"data": "success"});
+          this.toastService.show("Create blog success", ToastStatus.SUCCESS);
+          this.router.navigate(['/blogs']);
         } else {
-          this.toastService.show("Create skill error", ToastStatus.ERROR);
+          this.toastService.show("Create blog error", ToastStatus.ERROR);
         }
       });
     }
-    this.modalService.close();
   }
 
   createForm() {

@@ -1,1 +1,37 @@
-<p>blog-ui works!</p>
+<div class="container" *ngIf="currentBlog">
+  <div class="blog-container">
+    <div class="blog-container__header">
+      <button (click)="goToBlog()"><- Back to My blog</button>
+      <img src="{{currentBlog.imgUrl}}" alt="blog-image">
+      <p>{{currentBlog.createDate | date: 'dd-MM-yyyy'}}</p>
+      <h1>{{currentBlog.title}}</h1>
+      <div class="card-blog__skill-group">
+        <div 
+          class="card-blog__skill-item"
+          *ngFor="let skill of currentBlog.skillsVOs">
+          <lib-skill-ui 
+            [currentSkill]="skill"
+            (window:scroll)="highlightActiveTOC()"></lib-skill-ui>
+        </div>
+      </div>
+      <p>Last Update: {{currentBlog.updateDate | date: 'dd-MM-yyyy'}}</p>
+    </div>
+    <div class="blog-container__body">
+      <div [innerHTML]="currentBlog.content"></div>
+    </div>
+    <div class="blog-container__footer">
+      <p>By Me a Coffee</p>
+    </div>
+  </div>
+  <div class="toc-container">
+    <button (click)="goToBlog()"><- Back to My blog</button>
+    <div class="toc-container__content">
+      <h5>Main Contents</h5>
+      <ul>
+        <li *ngFor="let item of toc">
+          <a [href]="'#' + item.id">{{ item.title }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

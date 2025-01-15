@@ -98,21 +98,25 @@
 /* HOME EXPERIENCE RIGHT */
 .home__experience--right {
   grid-area: 1 / 2;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .home__experience--right p {
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 28px;
 }
 
 .home__experience--right ul {
+  width: 100%;
   list-style-type: none;
 }
 
 .home__experience--right li {
+  width: 100%;
   margin-bottom: 28px;
-
 }
 
 .home__experience--right li::before {
@@ -237,6 +241,11 @@
     margin: 24px 16px 0px 0px;
   }
 
+  /* HOME EXPERIENCE RIGHT */
+  .home__experience--right {
+    width: calc(100vw - 48px);
+  }
+
   /* HOME PROJECT */
   .home__project__body {
     grid-template: auto / 1fr;
@@ -299,9 +308,6 @@
   }
 
   /* HOME EXPERIENCE RIGHT */
-  .home__experience--right {
-    width: 100%;
-  }
   
   /* HOME PROJECT */
   .home__project h2 {

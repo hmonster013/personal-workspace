@@ -1,0 +1,135 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 92px;
+  box-sizing: border-box;
+}
+
+.container *:not(button, .card-blog__skill-item) {
+  width: 100%;
+}
+
+.blog-container {
+  flex: 1;
+  max-width: calc(100% - 400px);
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+/* BLOG HEADER */
+.blog-container__header {
+  width: 100%;
+}
+
+button {
+  height: 39px;
+  padding: 5px;
+  border-radius: 6px;
+  font-family: 'Source Code Pro';
+  font-size: 12px;
+  border: 1px solid black;
+  margin-bottom: 16px;
+}
+
+.blog-container__header img {
+  width: 100%;
+}
+
+/* BLOG BODY */
+.blog-container__body {
+  word-wrap: break-word;
+}
+
+.blog-container__body pre {
+  word-wrap: break-word;
+}
+
+/* BLOG FOOTER */
+
+
+/* Skill group */
+.card-blog__skill-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-blog__skill-item {
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+/* TABLE OF CONTENT */
+.toc-container {
+  flex: 0 0 370px;
+  width: 370px;
+  height: auto;
+  margin-top: 55px;
+  padding-left: 5px;
+  border-left: 3px solid black;
+  box-sizing: border-box;
+}
+
+.toc-container button {
+  display: none;
+}
+
+.toc-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.toc-container li {
+  margin-bottom: 8px;
+  overflow-wrap: break-word;
+}
+
+.toc-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.toc-container a.active {
+  font-weight: bold;
+  color: blue;
+}
+
+@media (max-width: 1250px) {
+  .container {
+    width: calc(100vw);
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 30px 0px;
+  }
+
+  .blog-container {
+    width: 100%;
+    max-width: none;
+    margin-right: 0px;
+  }
+
+  .blog-container img {
+    width: 100%;
+  }
+
+  .blog-container__header button {
+    display: none;
+  }
+
+  .toc-container {
+    width: 100%;
+    border: none;
+    margin-bottom: 16px;
+  }
+
+  .toc-container button {
+    display: block;
+  }
+
+  .toc-container__content {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
